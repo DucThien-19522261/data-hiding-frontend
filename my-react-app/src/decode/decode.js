@@ -30,7 +30,7 @@ const Decode = () => {
     formData.append("steg", stego);
 
     try {
-      await fetch("http://127.0.0.1:5001/decode_image", {
+      await fetch("http://127.0.0.1:5000/decode_image", {
         method: "POST",
         body: formData,
       });
