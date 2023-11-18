@@ -19,6 +19,8 @@
 }
 
 .error {
+  margin-left: 10px;
+  font-weight: bold;
   color: red;
 }
 
@@ -30,11 +32,22 @@
   width: 80%;
 }
 
+.loading {
+  margin: 60px;
+  width: 40%;
+}
+
 .grid-container {
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
   gap: 10px;
   padding: 10px;
+
+  .arrow {
+    margin-top: 170px;
+    margin-left: 50px;
+    width: 30%;
+  }
 }
 
 .default-image {
@@ -44,9 +57,4 @@
 
 .steg-title {
   margin-bottom: 50px;
-}
-
-.arrow {
-  width: 50%;
-  background-color: white;
 }

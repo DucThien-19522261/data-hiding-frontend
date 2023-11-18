@@ -2,8 +2,9 @@ import React, { useEffect, useRef, useState } from "react";
 import { Outlet } from "react-router-dom";
 import image_steg from "../assets/result_steg_image.png";
 import image_default from "../assets/default-upload.jpg";
-// import arrow from "../assets/arrow.jpg";
-// import steg_default from "../assets/default-stegano.jpg";
+import arrow from "../assets/arrow.png";
+import steg_default from "../assets/default-stegano.jpg";
+import loading from "../assets/loading.gif";
 import "./encode.css";
 
 const Encode = () => {
@@ -14,10 +15,14 @@ const Encode = () => {
   const [isError, SetError] = useState(false);
   const inputFileSecretRef = useRef();
   const inputFileCoverRef = useRef();
+  const [isDone, setIsDone] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleEncodeImage = async () => {
+    setIsLoading(true);
     if (!cover || !secret) {
       SetError(true);
+      setIsLoading(false);
       return;
     } else {
       SetError(false);
@@ -33,7 +38,10 @@ const Encode = () => {
         body: formData,
       });
     } catch (error) {
-      console.debug(error);
+      console.log("Error:", error);
+    } finally {
+      setIsLoading(false);
+      setIsDone(true);
     }
   };
 
@@ -94,11 +102,19 @@ const Encode = () => {
             />
           </div>
         </div>
-        <div>{/* <img className="arrow" src={arrow} alt="arrow" /> */}</div>
+        <div>
+          <img className="arrow" src={arrow} alt="arrow" />
+        </div>
         <div>
           <h3 className="steg-title">Stegano Image Result:</h3>
           <div>
-            <img className="image" src={image_steg} alt="hi" />
+            {isDone && !isLoading && (
+              <img className="image" src={image_steg} alt="hi" />
+            )}
+            {!isDone && !isLoading && (
+              <img className="image" src={steg_default} alt="hi" />
+            )}
+            {isLoading && <img className="loading" src={loading} alt="hi" />}
           </div>
         </div>
         <Outlet />
