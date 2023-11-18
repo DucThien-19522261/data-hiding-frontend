@@ -1,0 +1,52 @@
+.encode-button {
+  margin-left: 10px;
+  margin-top: 30px;
+  width: 19%;
+  height: 50px;
+  border-radius: 10px;
+  background-color: #04aa6d;
+  color: white;
+  font-size: larger;
+  border: none;
+}
+
+.encode-button:hover {
+  background-color: #01603d;
+}
+
+.encode-button:active {
+  font-weight: bold;
+}
+
+.error {
+  color: red;
+}
+
+.input-image {
+  margin-top: 10px;
+}
+
+.image {
+  width: 80%;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  gap: 10px;
+  padding: 10px;
+}
+
+.default-image {
+  border: none;
+  background-color: white;
+}
+
+.steg-title {
+  margin-bottom: 50px;
+}
+
+.arrow {
+  width: 50%;
+  background-color: white;
+}

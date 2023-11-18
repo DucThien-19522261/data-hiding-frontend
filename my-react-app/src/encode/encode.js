@@ -1,7 +1,9 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Outlet } from "react-router-dom";
 import image_steg from "../assets/result_steg_image.png";
 import image_default from "../assets/default-upload.jpg";
+// import arrow from "../assets/arrow.jpg";
+// import steg_default from "../assets/default-stegano.jpg";
 import "./encode.css";
 
 const Encode = () => {
@@ -12,6 +14,7 @@ const Encode = () => {
   const [isError, SetError] = useState(false);
   const inputFileSecretRef = useRef();
   const inputFileCoverRef = useRef();
+
   const handleEncodeImage = async () => {
     if (!cover || !secret) {
       SetError(true);
@@ -23,7 +26,6 @@ const Encode = () => {
     const formData = new FormData();
     formData.append("cover", cover);
     formData.append("secret", secret);
-    console.log("formData: ", formData);
 
     try {
       await fetch("http://127.0.0.1:5000/encode_image", {
@@ -92,19 +94,19 @@ const Encode = () => {
             />
           </div>
         </div>
-        <div className="encode-button">
-          <button className="button" onClick={handleEncodeImage}>
-            Encode image
-          </button>
-        </div>
+        <div>{/* <img className="arrow" src={arrow} alt="arrow" /> */}</div>
         <div>
-          <h3>Stegano Image Result:</h3>
+          <h3 className="steg-title">Stegano Image Result:</h3>
           <div>
             <img className="image" src={image_steg} alt="hi" />
           </div>
         </div>
         <Outlet />
       </div>
+
+      <button className="encode-button" onClick={handleEncodeImage}>
+        Encode image
+      </button>
       {isError && (
         <p className="error">Please input cover image and secret image</p>
       )}
